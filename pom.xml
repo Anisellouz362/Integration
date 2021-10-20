@@ -119,12 +119,10 @@
 			<artifactId>lombok</artifactId>
 			</dependency>
 		<!-- JSF -->
-		<!--  just simple modfication to test webhook and ngrock -->
 	</dependencies>
 
-
-
 	<build>
+	<finalName>Linking Docker with jenkins</finalName>
 		<outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
 		<plugins>
 			<plugin>
