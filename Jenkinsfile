@@ -1,33 +1,39 @@
-node {
-registry = "anisell/integration"
-registryCredential='cea18d8b-9899-4550-9368-fdac57f32294'
+pipeline{
 
-    def app
+	agent any
 
-    stage('Clone repository') {
-        /* Cloning the Repository to our Workspace */
+	environment {
+		DOCKERHUB_CREDENTIALS=credentials('anisell')
+	}
 
-        checkout scm
-    }
+	stages {
 
-    stage('Build image') {
-        /* This builds the actual image */
+		stage('Build') {
 
-        app = docker.build("test/integration")
-    }
+			steps {
+				sh 'docker build -t anisell/dev:latest .'
+			}
+		}
 
-    stage('Test image') {
-        
-        app.inside {
-            echo "Tests passed"
-        }
-    }
+		stage('Login') {
 
-    stage('Upload Image') {
-     steps{    
-         script {
-            docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
-            }
-    }
-}}}
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
+		stage('Push') {
+
+			steps {
+				sh 'docker push anisell/dev:latest'
+			}
+		}
+	}
+
+	post {
+		always {
+			sh 'docker logout'
+		}
+	}
+
+}
