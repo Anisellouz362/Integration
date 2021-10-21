@@ -1,4 +1,7 @@
 node {
+registry = "anisell/integration"
+registryCredential='cea18d8b-9899-4550-9368-fdac57f32294'
+
     def app
 
     stage('Clone repository') {
@@ -20,10 +23,11 @@ node {
         }
     }
 
-    stage('Push image') {
-        withDockerRegistry([ credentialsId: "docker-hub-credentials", url: "" ]) {
-        bat "docker push test/integration:build"
-        }
-                echo "Trying to Push Docker Build to DockerHub"
+    stage('Upload Image') {
+     steps{    
+         script {
+            docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+            }
     }
-}
+}}
