@@ -1,4 +1,4 @@
-FROM openjdk:8
-EXPOSE 8082
-ADD target/Linking Docker with jenkins.jar Linking Docker with jenkins.jar
-ENTRYPOINT ["java","-jar","Linking Docker with jenkins.jar"]
+FROM openjdk:11
+ARG JAR_FILE
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","app.jar"]
