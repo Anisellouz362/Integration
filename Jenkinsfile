@@ -24,7 +24,7 @@ registryCredential='cea18d8b-9899-4550-9368-fdac57f32294'
     }
 
     stage('Upload Image') {
-    docker.image('user/image:version').inside("""--entrypoint=''""") {
+    docker.image('anisell/test:version').inside("""--entrypoint=''""") {
      steps{    
          script {
             docker.withRegistry( '', registryCredential ) {
