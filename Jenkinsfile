@@ -20,14 +20,15 @@ node {
         }
     }
 
-    stage('Push image') {
-        /* 
-			You would need to first register with DockerHub before you can push images to your account
-		*/
-        docker.withRegistry('https://registry.hub.docker.com', 'anis') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
-            } 
-                echo "Trying to Push Docker Build to DockerHub"
+stage('Push image') {
+    withCredentials([usernamePassword( credentialsId: 'docker-hub-credentials', usernameVariable: 'anisell', passwordVariable: 'fadhel76220819')]) {
+        def registry_url = "registry.hub.docker.com/"
+        bat "docker login -u $USER -p $PASSWORD ${registry_url}"
+        docker.withRegistry("http://${registry_url}", "docker-hub-credentials") {
+            // Push your image now
+            bat "docker push test/integration:build"
+        }
     }
 }
+                echo "Trying to Push Docker Build to DockerHub"
+    }
