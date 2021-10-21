@@ -1,39 +1,33 @@
-pipeline{
+node {
+    def app
 
-	agent any
+    stage('Clone repository') {
+        /* Cloning the Repository to our Workspace */
 
-	environment {
-		DOCKERHUB_CREDENTIALS=credentials('anisell')
-	}
+        checkout scm
+    }
 
-	stages {
+    stage('Build image') {
+        /* This builds the actual image */
 
-		stage('Build') {
+        app = docker.build("anisell/dev")
+    }
 
-			steps {
-				sh 'docker build -t anisell/dev:latest .'
-			}
-		}
+    stage('Test image') {
+        
+        app.inside {
+            echo "Tests passed"
+        }
+    }
 
-		stage('Login') {
-
-			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-			}
-		}
-
-		stage('Push') {
-
-			steps {
-				sh 'docker push anisell/dev:latest'
-			}
-		}
-	}
-
-	post {
-		always {
-			sh 'docker logout'
-		}
-	}
-
+    stage('Push image') {
+        /* 
+			You would need to first register with DockerHub before you can push images to your account
+		*/
+        docker.withRegistry('https://registry.hub.docker.com', 'anisell') {
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
+            } 
+                echo "Trying to Push Docker Build to DockerHub"
+    }
 }
