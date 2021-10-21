@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
+<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.2.1.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
@@ -13,7 +13,6 @@
 	<version>1.0</version>
 	<name>timesheet</name>
 	<description>timesheet</description>
-
 	<properties>
 		<java.version>1.8</java.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
@@ -146,13 +145,13 @@
 	</build>
 <distributionManagement>
     <repository>
-        <id>my-releases</id>
+        <id>deploymentRepo</id>
         <name>my-releases</name>
         <url>http://localhost:8081/nexus/content/repositories/releases/</url>
         <layout>default</layout>
     </repository>
     <snapshotRepository>
-        <id>my-snapshots</id>
+        <id>deploymentRepo</id>
         <name>my-snapshots</name>
         <url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
         <layout>default</layout>
