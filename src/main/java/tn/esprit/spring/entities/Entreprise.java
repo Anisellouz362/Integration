@@ -23,7 +23,7 @@ public class Entreprise implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	private String name;
 	
@@ -44,11 +44,11 @@ public class Entreprise implements Serializable{
 		this.raisonSocial = raisonSocial;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -82,7 +82,12 @@ public class Entreprise implements Serializable{
 		this.departements.add(departement);
 	}
 
-
-
-
+	@Override
+	public String toString() {
+		return "Entreprise{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", raisonSocial='" + raisonSocial + '\'' +
+				'}';
+	}
 }
