@@ -1,8 +1,6 @@
 package tn.esprit.spring.services;
+ 
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -66,7 +64,7 @@ public class DepartementServiceImpl implements IDepartementService {
 		if (value.isPresent()) {
 			Departement dep=value.get();
 		
-		L.debug("je viens de trouver departement par id"+dep);
+		L.debug("je viens de trouver departement par id");
 		L.info("fin de   la methode get departement by id");
 		 return dep;
 		}
