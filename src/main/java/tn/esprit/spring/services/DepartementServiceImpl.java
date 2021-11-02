@@ -59,18 +59,19 @@ public class DepartementServiceImpl implements IDepartementService {
 
 
 	public Departement getDepartementById(int depId) {
-		L.info("lancer  la methode get entreprise by id");
-		L.debug("je vais lancer  la recherche de l'entreprise par id");
-		Optional<Departement> value = DepartementRepoistory.findById(depId);
+		L.info("lancer  la methode get departement by id");
+		L.debug("je vais lancer  la recherche du departement par id");
+		Optional < Departement > value = deptRepoistory.findById(depId);
+
 		if (value.isPresent()) {
 			Departement dep=value.get();
 		
-		L.debug("je viens de trouver l'entreprise par id"+dep);
-		L.info("fin de   la methode get entreprise by id");
+		L.debug("je viens de trouver departement par id"+dep);
+		L.info("fin de   la methode get departement by id");
 		 return dep;
 		}
-		else {L.debug("l'entreprise n'existe pas");
-		L.info("fin de   la methode get entreprise by id"); 
+		else {L.debug("departement n'existe pas");
+		L.info("fin de   la methode get departement by id"); 
 		return null;}
 		
 		
