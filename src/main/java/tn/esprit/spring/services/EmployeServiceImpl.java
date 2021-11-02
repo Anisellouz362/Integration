@@ -103,18 +103,18 @@ public class EmployeServiceImpl implements IEmployeService {
 		return contrat.getReference();
 	}
 
-	public void affecterContratAEmploye(int contratId, int employeId) {
-		l.info("lancer la methode affecter contrat à un employe");
-		l.debug("je vais affecter un contrat à un employe");
-		Contrat contratManagedEntity = contratRepoistory.findById(contratId).get();
-		Employe employeManagedEntity = employeRepository.findById(employeId).get();
+	//public void affecterContratAEmploye(int contratId, int employeId) {
+	//	l.info("lancer la methode affecter contrat à un employe");
+	//	l.debug("je vais affecter un contrat à un employe");
+	//	Contrat contratManagedEntity = contratRepoistory.findById(contratId).get();
+//		Employe employeManagedEntity = employeRepository.findById(employeId).get();
 
-		contratManagedEntity.setEmploye(employeManagedEntity);
-		contratRepoistory.save(contratManagedEntity);
-		l.debug("je viens d'affecter un contrat à un employe");
-		l.info("fin de la methode affecter contrat à un employet");
+		//contratManagedEntity.setEmploye(employeManagedEntity);
+		//contratRepoistory.save(contratManagedEntity);
+		//l.debug("je viens d'affecter un contrat à un employe");
+		//l.info("fin de la methode affecter contrat à un employet");
 		
-	}
+	//}
 
 	public String getEmployePrenomById(int employeId) {
 		l.info("lancer la methode get employe prenom by id");

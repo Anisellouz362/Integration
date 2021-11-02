@@ -151,6 +151,7 @@
         <url>http://localhost:8081/nexus/content/repositories/releases/</url>
         <layout>default</layout>
     </repository>
+    
     <snapshotRepository>
         <id>deploymentRepo</id>
         <name>my-snapshots</name>
