@@ -18,5 +18,4 @@ tn\esprit\spring\repository\UserRepository.class
 tn\esprit\spring\repository\ContratRepository.class
 tn\esprit\spring\services\IDepartementService.class
 tn\esprit\spring\repository\EmployeRepository.class
-tn\esprit\spring\services\UserServiceImpl.class
 tn\esprit\spring\entities\Contrat.class
