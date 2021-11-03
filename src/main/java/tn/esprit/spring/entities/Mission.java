@@ -15,7 +15,6 @@ public class Mission implements Serializable {
 
 	private static final long serialVersionUID = -5369734855993305723L;
 
-	// Auto Increment 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -27,7 +26,6 @@ public class Mission implements Serializable {
 	@ManyToOne
 	private Departement departement;
 	
-	// Mission est la cardinalité la plus faible, donc mappedBy ici : 
 	@OneToMany(mappedBy="mission")
 	private  List<Timesheet> timesheets;
 	
