@@ -15,22 +15,23 @@ pipeline {
 
         stage("Build") {
             steps {
+                echo "Building the project"; 
                 bat "mvn clean -DskipTests"
                 bat "mvn install -DskipTests"
                 bat "mvn package -DskipTests"
-            
-                // sh "mvn clean package -DskipTests" pour une machine linux
             }
         }
         
         stage("Sonar") {
             steps {
+                echo "Testing with sonnar"; 
                 bat "mvn sonar:sonar"
             }
         }
         
         stage("DEPLOY") {
             steps {
+                echo "Deploying on Nexus"; 
                 bat "mvn deploy -DskipTests"
             }
         }
