@@ -31,7 +31,7 @@ pipeline {
         
         stage("DEPLOY") {
             steps {
-                echo "Deploying on Nexus"; 
+              
                 bat "mvn deploy -DskipTests"
             }
         }
