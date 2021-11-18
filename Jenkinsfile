@@ -44,9 +44,5 @@ pipeline {
           body: "${env.BUILD_URL} has result ${currentBuild.result}"
     }
   }
-        post {
-        always {
-            cleanWs()
-        }
-    }
+    
 }
