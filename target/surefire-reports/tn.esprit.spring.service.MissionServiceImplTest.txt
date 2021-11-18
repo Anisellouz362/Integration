@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: tn.esprit.spring.service.MissionServiceImplTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 6.144 sec <<< FAILURE! - in tn.esprit.spring.service.MissionServiceImplTest
+testdeleteMission(tn.esprit.spring.service.MissionServiceImplTest)  Time elapsed: 0.019 sec  <<< ERROR!
+org.springframework.dao.EmptyResultDataAccessException: No class tn.esprit.spring.entities.Mission entity with id 1 exists!
+	at tn.esprit.spring.service.MissionServiceImplTest.testdeleteMission(MissionServiceImplTest.java:49)
+
