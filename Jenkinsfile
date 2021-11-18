@@ -38,9 +38,11 @@ pipeline {
     }
    
     post {
-        always {
-            cleanWs()
-        }
+    always {
+       mail to: 'abdelwahed.hamza9@gmail.com',
+          subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
+          body: "${env.BUILD_URL} has result ${currentBuild.result}"
     }
+  }
     
 }
