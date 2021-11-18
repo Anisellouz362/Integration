@@ -1,37 +1,46 @@
-node {
-    def app
+pipeline {
 
-    stage('Clone repository') {
-        /* Cloning the Repository to our Workspace */
+    agent any
 
-        checkout scm
-    }
 
-    stage('Build image') {
-        /* This builds the actual image */
+    stages {
+       stage ('GIT') {
+            steps {
+               echo "Getting Project from Git"; 
+                git branch: "hamzaa", 
+                    url: "https://github.com/Anisellouz362/Integration",
+                     
+            }
+        }
 
-        app = docker.build("anisell/dev")
-    }
-
-    stage('Test image') {
+        stage("Build") {
+            steps {
+                echo "Building the project"; 
+                bat "mvn clean -DskipTests"
+                bat "mvn install -DskipTests"
+                bat "mvn package -DskipTests"
+            }
+        }
         
-        app.inside {
-            echo "Tests passed"
+        stage("Sonar") {
+            steps {
+                echo "Testing with sonnar"; 
+                bat "mvn sonar:sonar"
+            }
+        }
+        
+        stage("DEPLOY") {
+            steps {
+                echo "Deploying on Nexus"; 
+                bat "mvn deploy -DskipTests"
+            }
         }
     }
-
-    stage('Push image') {
-        /* 
-			You would need to first register with DockerHub before you can push images to your account
-		*/
-        docker.withRegistry('https://registry.hub.docker.com', 'anisell') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
-            } 
-                echo "Trying to Push Docker Build to DockerHub"
+   
+    post {
+        always {
+            cleanWs()
+        }
     }
-    stage('Email Notification') {
-	    mail bcc: '', body: '''Hello Anis, this is a Jenkins Pipeline alert for launching Cycle
-
-            Thank you''', cc: '', from: '', replyTo: '', subject: 'Jenking Job Launched', to: 'anis.ellouz1@esprit.tn'
-    }}
+    
+}
